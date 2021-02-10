@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-server-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todo-server
+  template:
+    metadata:
+      labels:
+        app: todo-server
+    spec:
+      containers:
+        - name: todo-server
+          image: todolistapp/todo-server
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: todo-server-srv
+spec:
+  selector:
+    app: todo-server
+  ports:
+    - name: todo-server
+      protocol: TCP
+      port: 3000
+      targetPort: 3000
