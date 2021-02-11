@@ -1,6 +1,7 @@
 import express from 'express';
 import { json } from 'body-parser';
 import mongoose from 'mongoose';
+import cookieSession from 'cookie-session';
 import { errorHandler } from './middleware/error-handler';
 import { NotFoundError } from './errors/not-found-error';
 import { currentUserRouter } from './routes/current-user';
@@ -9,7 +10,10 @@ import { signoutRouter } from './routes/signout';
 import { signupRouter } from './routes/signup';
 
 const app = express();
-
+// Traffic to app is beeing proxied by ingress nginx, so as we require in cookieSession that cookies will only be used over https, we set express to trust traffic coming from that proxy
+app.set('trust proxy', true);
+// Encryption for cookie is disabled because it is going to store a JWT, and it's already encrypted
+app.use(cookieSession({ signed: false, secure: true }));
 app.use(json());
 
 app.use(currentUserRouter);
@@ -25,6 +29,8 @@ app.all('*', async (req, res, next) => {
 app.use(errorHandler);
 
 const start = async () => {
+  if (!process.env.JWT_KEY) throw new Error('JWT_KEY must be defined');
+
   try {
     await mongoose.connect('mongodb://mongodb-srv:27017/users', {
       useNewUrlParser: true,
