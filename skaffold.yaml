@@ -16,3 +16,15 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
+    - image: todolistapp/todo-client
+      context: client
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.js'
+            dest: .
+          - src: 'src/**/*.css'
+            dest: .
+          - src: 'public/**/*'
+            dest: .
