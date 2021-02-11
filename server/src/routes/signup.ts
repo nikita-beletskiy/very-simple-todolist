@@ -1,6 +1,8 @@
-import express, { Request, Response } from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 import { body } from 'express-validator';
+import { User } from '../models/user';
 import { validateRequest } from '../middleware/validate-request';
+import { BadRequestError } from '../errors/bad-request-error';
 
 const router = express.Router();
 router.post(
@@ -13,10 +15,16 @@ router.post(
       .withMessage('Invalid password')
   ],
   validateRequest, // Custom middleware that will inspect 'req' object after 'body' function checked it for incorrect data and possibly set some errors on it
-  (req: Request, res: Response) => {
+  async (req: Request, res: Response, next: NextFunction) => {
     const { email, password } = req.body;
 
-    res.send({ email, password });
+    const existingUser = await User.findOne({ email });
+    if (existingUser) return next(new BadRequestError('Email in use'));
+
+    const user = User.build({ email, password });
+    await user.save();
+
+    res.status(201).send(user);
   }
 );
 
