@@ -15,7 +15,10 @@
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off",
     "jsx-quotes": "off",
-    "comma-dangle": "off"
+    "comma-dangle": "off",
+    "linebreak-style": "off",
+    "arrow-parens": "off"
   }
 }

@@ -1,0 +1,16 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 1% 2% 0 2%;
+}
+
+.links {
+  display: flex;
+  flex-grow: 2;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: 25px;
+}
+.links a {
+  padding-left: 3%;
+}
