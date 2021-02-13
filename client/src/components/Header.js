@@ -1,7 +1,11 @@
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { UserContext } from '../contexts/UserContext';
 import '../styles/Header.js.css';
 
-const Header = ({ currentUser }) => {
+const Header = () => {
+  const { currentUser } = useContext(UserContext);
+
   const links = [
     !currentUser && { label: 'Sign Up', href: '/signup' },
     !currentUser && { label: 'Sign In', href: '/signin' },

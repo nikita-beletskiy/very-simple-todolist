@@ -15,10 +15,16 @@
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "react/react-in-jsx-scope": "off",
+    "react/destructuring-assignment": "off",
     "react/prop-types": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "jsx-a11y/label-has-associated-control": "off",
     "jsx-quotes": "off",
     "comma-dangle": "off",
     "linebreak-style": "off",
-    "arrow-parens": "off"
+    "arrow-parens": "off",
+    "consistent-return": "off",
+    "operator-linebreak": "off",
+    "object-curly-newline": "off"
   }
 }
