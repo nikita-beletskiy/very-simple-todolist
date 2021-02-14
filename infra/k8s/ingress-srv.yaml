@@ -14,6 +14,10 @@ spec:
             backend:
               serviceName: todo-server-srv
               servicePort: 3000
+          - path: /api/todos/?(.*)
+            backend:
+              serviceName: todo-server-srv
+              servicePort: 3000
           - path: /?(.*)
             backend:
               serviceName: todo-client-srv

@@ -1,12 +1,12 @@
-import express, { Request, Response, NextFunction } from 'express';
+import { Router, Request, Response, NextFunction } from 'express';
 import { body } from 'express-validator';
 import jwt from 'jsonwebtoken';
-import { User } from '../models/user';
-import { Password } from '../services/password';
-import { validateRequest } from '../middleware/validate-request';
-import { BadRequestError } from '../errors/bad-request-error';
+import { User } from '../../models/user';
+import { Password } from '../../services/password';
+import { validateRequest } from '../../middleware/validate-request';
+import { BadRequestError } from '../../errors/bad-request-error';
 
-const router = express.Router();
+const router = Router();
 
 router.post(
   '/api/users/signin',
