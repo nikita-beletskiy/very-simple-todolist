@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 import { TodosContext } from '../../contexts/TodosContext';
 import useRequest from '../../hooks/useRequest';
 
-const AddTodo = () => {
+const AddTodo = ({ styles }) => {
   const [todo, setTodo] = useState('');
   const { addNewTodo } = useContext(TodosContext);
 
@@ -23,7 +23,7 @@ const AddTodo = () => {
   };
 
   return (
-    <div className='todo-form'>
+    <div className={styles.form}>
       <form onSubmit={handleSubmit}>
         <input
           type='text'

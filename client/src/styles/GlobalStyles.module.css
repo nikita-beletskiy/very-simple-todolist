@@ -1,0 +1,39 @@
+.divprogress {
+  display: flex;
+  justify-content: space-around;
+  align-self: center;
+  width: 2.1em;
+  height: 0.7em;
+}
+.divprogress div {
+  width: 33%;
+  height: 100%;
+  margin-left: 5%;
+  border-radius: 50%;
+  background: #333;
+  animation: loading-grid 1.2s linear infinite;
+}
+.divprogress div:nth-child(1) {
+  top: 8px;
+  left: 8px;
+  animation-delay: 0s;
+}
+.divprogress div:nth-child(2) {
+  top: 8px;
+  left: 32px;
+  animation-delay: -0.4s;
+}
+.divprogress div:nth-child(3) {
+  top: 8px;
+  left: 56px;
+  animation-delay: -0.8s;
+}
+@keyframes loading-grid {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}

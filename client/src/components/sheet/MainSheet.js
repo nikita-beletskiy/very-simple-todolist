@@ -1,16 +1,15 @@
 import TodosContextProvider from '../../contexts/TodosContext';
-import '../../styles/MainSheet.css';
 import AddTodo from './AddTodo';
 import Todos from './Todos';
+import styles from '../../styles/MainSheet.module.css';
 
 const MainSheet = () => (
-  <div className='sheet'>
+  <div className={styles.sheet}>
     <TodosContextProvider>
-      <div className='content-wrapper'>
-        <h2>I need to...</h2>
+      <div className={styles.content}>
         <Todos />
       </div>
-      <AddTodo />
+      <AddTodo styles={styles} />
     </TodosContextProvider>
   </div>
 );

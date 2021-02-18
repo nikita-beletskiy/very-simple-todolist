@@ -1,7 +1,8 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../contexts/UserContext';
-import '../styles/Header.css';
+import styles from '../styles/Header.module.css';
+import globalStyles from '../styles/GlobalStyles.module.css';
 
 const Header = () => {
   const { currentUser, isPending } = useContext(UserContext);
@@ -20,11 +21,23 @@ const Header = () => {
     ));
 
   return (
-    <div className='header'>
-      <h1>Very Simple Todolist</h1>
-      <div className='links'>
+    <div className={styles.header}>
+      <div className={styles.title}>
+        <h1>Very Simple Todolist</h1>
+      </div>
+      <div className={styles.menu}>
         <Link to='/'>Home</Link>
-        {isPending ? 'Loading...' : links}
+        {isPending ? (
+          <div className={styles.animbox}>
+            <div className={globalStyles.divprogress}>
+              <div />
+              <div />
+              <div />
+            </div>
+          </div>
+        ) : (
+          links
+        )}
       </div>
     </div>
   );

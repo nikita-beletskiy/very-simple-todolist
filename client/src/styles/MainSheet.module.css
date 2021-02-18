@@ -1,36 +1,44 @@
 .sheet {
   width: 70%;
-  height: 90vh;
+  min-width: 800px;
+  height: 97%;
   margin: 0 auto;
+  padding: 3% 0 0;
   box-shadow: 0px 0px 30px -16px #000000bf;
 }
 
-.content-wrapper {
+.content {
   width: 85%;
   height: 88%;
   margin: 0 auto;
 }
-.content-wrapper h2 {
-  margin: 2% 0;
-  font-size: 30px;
-}
 
-.todo-form {
+.form {
   display: flex;
   align-items: center;
   width: 90%;
   margin: 2% auto 0;
   height: 8%;
 }
-.todo-form form {
+.form form {
   width: 100%;
 }
-.todo-form form * {
+.form form * {
   font-size: 20px;
 }
-.todo-form form input {
+.form form input {
   width: 90%;
 }
-.todo-form form button {
+.form form button {
   width: 10%;
+}
+
+/* MEDIA */
+
+@media (max-width: 900px) {
+  .sheet {
+    width: 100%;
+    min-width: 400px;
+    box-shadow: none;
+  }
 }

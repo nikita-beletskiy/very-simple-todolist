@@ -1,0 +1,40 @@
+.header {
+  width: 100%;
+  height: 11%;
+  display: flex;
+  justify-content: space-between;
+  padding: 1% 2%;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+}
+
+.menu {
+  display: flex;
+  flex-grow: 2;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: 1.7rem;
+}
+.menu a {
+  padding-left: 3%;
+}
+.menu .animbox {
+  /* align-self: flex-end; */
+  margin-left: 10px;
+  font-size: 1rem;
+}
+
+/* MEDIA */
+
+@media (min-width: 1800px) {
+  .header h1 {
+    font-size: 3rem;
+  }
+
+  .menu {
+    font-size: 2.5rem;
+  }
+}

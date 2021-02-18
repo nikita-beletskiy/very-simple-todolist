@@ -1,8 +1,9 @@
 import { useContext } from 'react';
 import { TodosContext } from '../../contexts/TodosContext';
 import useRequest from '../../hooks/useRequest';
+import globalStyles from '../../styles/GlobalStyles.module.css';
 
-const Todo = ({ todo: task }) => {
+const Todo = ({ styles, todo: task }) => {
   const { deleteFromTodolist, checkTodo } = useContext(TodosContext);
 
   const { request: deleteTodo, isPending: pendingDelete } = useRequest({
@@ -18,17 +19,26 @@ const Todo = ({ todo: task }) => {
   });
 
   return (
-    <div className='todo'>
+    <div className={styles.todo}>
       <div
-        className={`title ${task.done ? 'done' : ''} ${
-          pendingCheck || pendingDelete ? 'progress' : ''
+        className={`${styles.title} ${task.done && styles.done} ${
+          (pendingCheck || pendingDelete) && styles.progress
         }`}
         role='listitem'
         onClick={() => check()}
       >
         {task.title}
+        <div className={styles.animbox}>
+          {(pendingCheck || pendingDelete) && (
+            <div className={globalStyles.divprogress}>
+              <div />
+              <div />
+              <div />
+            </div>
+          )}
+        </div>
       </div>
-      <div className='buttons'>
+      <div className={styles.buttons}>
         <button
           type='button'
           onClick={() => deleteTodo()}
