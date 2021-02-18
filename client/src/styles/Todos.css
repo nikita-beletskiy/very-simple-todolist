@@ -1,0 +1,19 @@
+.todos {
+  font-size: 30px;
+}
+
+.todo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 8px;
+}
+.todo .title {
+  cursor: pointer;
+}
+.todo .done {
+  text-decoration: line-through;
+}
+.todo .progress {
+  color: grey;
+}

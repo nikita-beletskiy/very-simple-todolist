@@ -1,10 +1,11 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Landing from './components/Landing';
-import Signup from './components/Signup';
-import Signin from './components/Signin';
+import Signup from './components/login/Signup';
+import Signin from './components/login/Signin';
 import UserContextProvider from './contexts/UserContext';
-import Signout from './components/Signout';
+import Signout from './components/login/Signout';
+import MainSheet from './components/sheet/MainSheet';
 
 const App = () => (
   <Router>
@@ -15,6 +16,11 @@ const App = () => (
           <Switch>
             <Route exact path='/'>
               <Landing />
+            </Route>
+            <Route path='/my-list'>
+              {' '}
+              {/* ADD REDIRECT! */}
+              <MainSheet />
             </Route>
             <Route path='/signup'>
               <Signup />

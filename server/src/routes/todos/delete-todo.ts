@@ -12,17 +12,16 @@ router.delete(
   async (req: Request, res: Response, next: NextFunction) => {
     const todo = await Todo.findById(req.params.id);
 
-    const deleteTodoAndRespond = async () => {
-      await Todo.findByIdAndDelete(req.params.id);
-      const todos = await Todo.find({ userId: req.currentUser!.id });
-      res.send(todos);
+    const deleteTodoAndRespond = async (id: string) => {
+      await Todo.deleteOne({ _id: id });
+      res.send({ deletedId: id });
     };
 
     !todo
       ? next(new NotFoundError())
       : todo.userId !== req.currentUser!.id
       ? next(new NotAuthorizedError())
-      : await deleteTodoAndRespond();
+      : await deleteTodoAndRespond(todo.id);
   }
 );
 

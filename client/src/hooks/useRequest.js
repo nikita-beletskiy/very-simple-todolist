@@ -1,23 +1,38 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-const useRequest = ({ url, method, body, onSuccess }) => {
-  const [errors, setErrors] = useState(null);
+const useRequest = ({
+  url,
+  method = 'get',
+  body = null,
+  withEffect = false,
+  onSuccess = null,
+  onFailure = null
+}) => {
+  const [isPending, setIsPending] = useState(false);
+  const [error, setError] = useState(null);
 
   const request = async () => {
     try {
-      setErrors(null);
-      const response = await axios[method](url, { ...body });
+      setIsPending(true);
+      setError(null);
+      const response = await axios[method](url, body && { ...body });
+      setIsPending(false);
 
       if (onSuccess) onSuccess(response.data);
+    } catch (err) {
+      setIsPending(false);
 
-      return response.data;
-    } catch (error) {
-      setErrors(error.response.data.errors);
+      err.response ? setError(err.response.data.errors) : console.log(err);
+      if (onFailure) onFailure(error.response.data.errors);
     }
   };
 
-  return { request, errors };
+  useEffect(() => {
+    if (withEffect) request();
+  }, []);
+
+  return { request, isPending, error };
 };
 
 export default useRequest;

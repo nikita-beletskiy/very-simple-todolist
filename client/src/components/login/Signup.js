@@ -1,16 +1,17 @@
 import { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
-import { UserContext } from '../contexts/UserContext';
-import useRequest from '../hooks/useRequest';
-import '../styles/UserForm.css';
+import { UserContext } from '../../contexts/UserContext';
+import useRequest from '../../hooks/useRequest';
+import '../../styles/UserForm.css';
 
 const Signup = () => {
   const { updateCurrentUser } = useContext(UserContext);
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const history = useHistory();
-  const { request, errors } = useRequest({
-    url: '/api/users/signin',
+
+  const { request: signup, isPending, error } = useRequest({
+    url: '/api/users/signup',
     method: 'post',
     body: { email, password },
     onSuccess: user => {
@@ -19,34 +20,29 @@ const Signup = () => {
     }
   });
 
-  const handleSubmit = async event => {
+  const handleSubmit = event => {
     event.preventDefault();
-
-    request();
+    signup();
   };
 
-  const emailError =
-    errors &&
-    errors
-      .filter(error => error.field === 'email')
-      .map(error => (
-        <div className='error' key={error.message}>
-          {error.message}
-        </div>
-      ));
-  const passwordError =
-    errors &&
-    errors
-      .filter(error => error.field === 'password')
-      .map(error => (
-        <div className='error' key={error.message}>
-          {error.message}
-        </div>
-      ));
+  const parsedErrors = error
+    ? {
+        emailError: error.find(err => err.field === 'email') && (
+          <div className='error' key={error.message}>
+            {error.find(err => err.field === 'email').message}
+          </div>
+        ),
+        passwordError: error.find(err => err.field === 'password') && (
+          <div className='error' key={error.message}>
+            {error.find(err => err.field === 'password').message}
+          </div>
+        )
+      }
+    : { emailError: null, passwordError: null };
 
   return (
     <div className='user-form'>
-      <h2>Sign In</h2>
+      <h2>Sign Up</h2>
       <form onSubmit={handleSubmit}>
         <div className='input-group'>
           <label htmlFor='email'>Email:</label>
@@ -56,7 +52,7 @@ const Signup = () => {
             required
             onChange={e => setEmail(e.target.value)}
           />
-          {emailError}
+          {parsedErrors.emailError}
         </div>
         <div className='input-group'>
           <label htmlFor='password'>Password:</label>
@@ -66,9 +62,11 @@ const Signup = () => {
             required
             onChange={e => setPassword(e.target.value)}
           />
-          {passwordError}
+          {parsedErrors.passwordError}
         </div>
-        <button type='submit'>Sign In</button>
+        <button type='submit' disabled={isPending}>
+          Sign Up
+        </button>
       </form>
     </div>
   );

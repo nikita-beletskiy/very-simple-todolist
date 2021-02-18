@@ -19,7 +19,8 @@ router.post(
     const { email, password } = req.body;
 
     const existingUser = await User.findOne({ email });
-    if (!existingUser) return next(new BadRequestError('Invalid email'));
+    if (!existingUser)
+      return next(new BadRequestError('Invalid email', 'email'));
 
     const passwordsMatch = await Password.compare(
       existingUser.password,

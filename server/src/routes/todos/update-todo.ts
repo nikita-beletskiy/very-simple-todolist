@@ -16,7 +16,7 @@ router.patch(
       todoToUpdate.set({ done: !todoToUpdate.done });
       await todoToUpdate.save();
 
-      res.send(todoToUpdate);
+      res.send({ checkedId: todoToUpdate.id });
     };
 
     !todo
