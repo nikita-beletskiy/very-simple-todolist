@@ -1,5 +1,5 @@
 import express from 'express';
-import { json } from 'body-parser';
+import mongoose from 'mongoose';
 import cookieSession from 'cookie-session';
 import { errorHandler } from './middleware/error-handler';
 import { getCurrentUser } from './middleware/get-current-user';
@@ -18,7 +18,7 @@ const app = express();
 app.set('trust proxy', true);
 // Encryption for cookie is disabled because it is going to store a JWT, and it's already encrypted
 app.use(cookieSession({ signed: false, secure: true }));
-app.use(json());
+app.use(express.json());
 app.use(getCurrentUser);
 
 app.use(currentUserRouter);
@@ -37,8 +37,26 @@ app.all('*', async (req, res, next) => {
 // This middleware fires when some error occurs in app. Then it checks whether the error is an instance of BaseCustomErrors abstract class and sends an appropriate response.
 app.use(errorHandler);
 
-if (!process.env.JWT_KEY) throw new Error('JWT_KEY must be defined');
+const start = async () => {
+  console.log('Starting Server...');
 
-app.listen(3000, () => {
-  console.log('Listening on port 3000');
-});
+  if (!process.env.JWT_KEY) throw new Error('JWT_KEY must be defined');
+  if (!process.env.MONGO_URI) throw new Error('MONGO_URI must be defined');
+
+  try {
+    await mongoose.connect(process.env.MONGO_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true
+    });
+    console.log('Connected to MongoDB!');
+  } catch (error) {
+    console.log(error);
+  }
+
+  app.listen(3000, () => {
+    console.log('Listening on port 3000');
+  });
+};
+
+start();

@@ -34,15 +34,6 @@ const todoSchema = new mongoose.Schema<TodoDoc, TodoModel>(
 
 todoSchema.statics.build = (attrs: TodoAttrs) => new Todo(attrs);
 
-const connection = mongoose.createConnection(
-  'mongodb://mongodb-srv:27017/todos',
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true
-  }
-);
-
-const Todo = connection.model<TodoDoc, TodoModel>('Todo', todoSchema);
+const Todo = mongoose.model<TodoDoc, TodoModel>('Todo', todoSchema, 'todos');
 
 export { Todo };

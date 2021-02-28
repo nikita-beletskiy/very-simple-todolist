@@ -49,14 +49,6 @@ userSchema.pre('save', async function (done) {
 // Custom method for building a new User Document, so TS could check the properties that are passed in, as mongoose by default does not have this functionality
 userSchema.statics.build = (attrs: UserAttrs) => new User(attrs);
 
-const connection = mongoose.createConnection(
-  'mongodb://mongodb-srv:27017/users',
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true
-  }
-);
-const User = connection.model<UserDoc, UserModel>('User', userSchema);
+const User = mongoose.model<UserDoc, UserModel>('User', userSchema, 'users');
 
 export { User };
