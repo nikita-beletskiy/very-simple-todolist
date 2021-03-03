@@ -3,7 +3,7 @@ import AddTodo from './AddTodo';
 import Todos from './Todos';
 import styles from '../../styles/MainSheet.module.css';
 
-const MainSheet = () => (
+const Main = () => (
   <div className={styles.sheet}>
     <TodosContextProvider>
       <div className={styles.content}>
@@ -14,4 +14,4 @@ const MainSheet = () => (
   </div>
 );
 
-export default MainSheet;
+export default Main;

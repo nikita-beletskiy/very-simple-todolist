@@ -21,6 +21,7 @@
     "react/jsx-indent": "off",
     "react/jsx-tag-spacing": "off",
     "react/jsx-wrap-multilines": "off",
+    "react/jsx-closing-tag-location": "off",
     "jsx-a11y/label-has-associated-control": "off",
     "jsx-quotes": "off",
     "comma-dangle": "off",
