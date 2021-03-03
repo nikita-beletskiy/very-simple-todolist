@@ -60,6 +60,22 @@ a {
   margin: 4rem 0;
 }
 
+.mx-1 {
+  margin: 0 1rem;
+}
+.mx-2 {
+  margin: 0 1.5rem;
+}
+.mx-3 {
+  margin: 0 2rem;
+}
+.mx-4 {
+  margin: 0 3rem;
+}
+.mx-5 {
+  margin: 0 4rem;
+}
+
 .m-1 {
   margin: 1rem;
 }
@@ -91,6 +107,22 @@ a {
 }
 .py-5 {
   padding: 4rem 0;
+}
+
+.px-1 {
+  padding: 0 1rem;
+}
+.px-2 {
+  padding: 0 1.5rem;
+}
+.px-3 {
+  padding: 0 2rem;
+}
+.px-4 {
+  padding: 0 3rem;
+}
+.px-5 {
+  padding: 0 4rem;
 }
 
 .p-1 {

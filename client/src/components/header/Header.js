@@ -1,6 +1,5 @@
 import { useContext, Suspense, lazy } from 'react';
 import Breakpoint from 'react-socks';
-import { Link } from 'react-router-dom';
 import { UserContext } from '../../contexts/UserContext';
 import styles from '../../styles/Header.module.css';
 import LoadingSpinner from '../LoadingSpinner';
@@ -17,44 +16,30 @@ const Header = () => {
     !currentUser && { label: 'Sign In', href: '/signin' },
     currentUser && { label: 'My List', href: '/my-list' },
     currentUser && { label: 'Sign Out', href: '/signout' }
-  ]
-    .filter(link => link)
-    .map(({ label, href }) => (
-      <Link key={href} to={href}>
-        {label}
-      </Link>
-    ));
+  ].filter(link => link);
 
   return (
-    <Suspense fallback={<LoadingSpinner />}>
-      <div className={styles.header}>
-        <div className='container flex'>
-          <h1>Todolist</h1>
+    <div className={styles.header}>
+      <div className='container flex'>
+        <h1>Todolist</h1>
 
+        <Suspense fallback={<LoadingSpinner />}>
           <Breakpoint
             className={styles.navbar}
             customQuery='(max-width: 670px)'
           >
-            {isPending ? (
-              <LoadingSpinner size='1.2em' />
-            ) : (
-              <MobileNav links={links} />
-            )}
+            {isPending ? <LoadingSpinner /> : <MobileNav links={links} />}
           </Breakpoint>
 
           <Breakpoint
             className={styles.navbar}
             customQuery='(min-width: 670px)'
           >
-            {isPending ? (
-              <LoadingSpinner size='1.5em' />
-            ) : (
-              <DesktopNav links={links} />
-            )}
+            {isPending ? <LoadingSpinner /> : <DesktopNav links={links} />}
           </Breakpoint>
-        </div>
+        </Suspense>
       </div>
-    </Suspense>
+    </div>
   );
 };
 

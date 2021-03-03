@@ -3,7 +3,7 @@ import globalStyles from '../styles/GlobalStyles.module.css';
 
 const LoadingSpinner = ({ size }) => (
   <div className={globalStyles.loading}>
-    <AiOutlineLoading size={size || '1em'} />
+    <AiOutlineLoading size={size || '1.5em'} />
   </div>
 );
 
