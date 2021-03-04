@@ -17,10 +17,22 @@
 }
 
 body {
+  background-color: #e4e4e4;
   font-family: 'Lato', sans-serif;
-  color: #fff;
+  color: var(--dark-color);
   user-select: none;
   outline: none;
+}
+
+h1,
+h2 {
+  font-weight: 300;
+  line-height: 1.2;
+  margin: 10px 0;
+}
+
+p {
+  margin: 10px 0;
 }
 
 a {
@@ -139,4 +151,75 @@ a {
 }
 .p-5 {
   padding: 4rem;
+}
+
+/* BACKGROUNDS & COLORED BUTTONS */
+.bg-primary,
+.btn-primary {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+.bg-secondary,
+.btn-secondary {
+  background-color: var(--secondary-color);
+  color: #fff;
+}
+.bg-dark,
+.btn-dark {
+  background-color: var(--dark-color);
+  color: #fff;
+}
+.bg-light,
+.btn-light {
+  background-color: var(--light-color);
+  color: #333;
+}
+
+.bg-primary a,
+.btn-primary a,
+.bg-secondary a,
+.btn-secondary a,
+.bg-dark a,
+.btn-dark a {
+  color: #fff;
+}
+
+/* TEXT */
+.text-primary {
+  color: var(--primary-color);
+}
+.text-secondary {
+  color: var(--secondary-color);
+}
+.text-dark {
+  color: var(--dark-color);
+}
+.text-light {
+  color: var(--light-color);
+}
+
+.lead {
+  font-size: 20px;
+}
+.xs {
+  font-size: 1rem;
+}
+.s {
+  font-size: 1.5rem;
+}
+.m {
+  font-size: 2rem;
+}
+.ml {
+  font-size: 2.5rem;
+}
+.l {
+  font-size: 3rem;
+}
+.xl {
+  font-size: 4rem;
+}
+
+.text-center {
+  text-align: center;
 }

@@ -1,5 +1,6 @@
 .header {
   background-color: var(--primary-color);
+  color: #fff;
   height: 10vh;
   min-height: 48px;
 }
@@ -15,6 +16,7 @@
 }
 
 .menu {
+  z-index: 2;
   position: fixed;
   top: 0;
   left: 0;

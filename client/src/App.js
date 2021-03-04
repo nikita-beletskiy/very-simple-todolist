@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { BreakpointProvider } from 'react-socks';
 import Header from './components/header/Header';
-import Landing from './components/Landing';
+import Homepage from './components/homepage/Homepage';
 import Signup from './components/login/Signup';
 import Signin from './components/login/Signin';
 import UserContextProvider from './contexts/UserContext';
@@ -15,7 +15,7 @@ const App = () => (
         <Header />
         <Switch>
           <Route exact path='/'>
-            <Landing />
+            <Homepage />
           </Route>
           <Route path='/my-list'>
             {/* ADD REDIRECT! */}
