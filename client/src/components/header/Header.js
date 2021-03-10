@@ -1,7 +1,6 @@
 import { useContext, Suspense, lazy } from 'react';
 import Breakpoint from 'react-socks';
 import { UserContext } from '../../contexts/UserContext';
-import styles from '../../styles/Header.module.css';
 import LoadingSpinner from '../LoadingSpinner';
 
 const MobileNav = lazy(() => import('./MobileNav'));
@@ -19,22 +18,16 @@ const Header = () => {
   ].filter(link => link);
 
   return (
-    <div className={styles.header}>
-      <div className='container flex'>
+    <div className='header'>
+      <div className='container'>
         <h1>Todolist</h1>
 
         <Suspense fallback={<LoadingSpinner />}>
-          <Breakpoint
-            className={styles.navbar}
-            customQuery='(max-width: 670px)'
-          >
+          <Breakpoint className='navbar' customQuery='(max-width: 670px)'>
             {isPending ? <LoadingSpinner /> : <MobileNav links={links} />}
           </Breakpoint>
 
-          <Breakpoint
-            className={styles.navbar}
-            customQuery='(min-width: 670px)'
-          >
+          <Breakpoint className='navbar' customQuery='(min-width: 670px)'>
             {isPending ? <LoadingSpinner /> : <DesktopNav links={links} />}
           </Breakpoint>
         </Suspense>

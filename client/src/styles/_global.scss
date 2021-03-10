@@ -1,10 +1,11 @@
 .loading {
   display: flex;
   margin: 0.5em;
-}
-.loading svg {
-  animation: spin 1s infinite;
-  animation-timing-function: cubic-bezier(0.3, 0.8, 0.8, 0.7);
+
+  svg {
+    animation: spin 1s infinite;
+    animation-timing-function: cubic-bezier(0.3, 0.8, 0.8, 0.7);
+  }
 }
 @keyframes spin {
   0% {

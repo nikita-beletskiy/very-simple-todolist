@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap');
+
+$primary-color: #047aed;
+$secondary-color: #1c3fa8;
+$dark-color: #002240;
+$light-color: #e4e4e4;
+$success-color: #5cb85c;
+$error-color: #d9534f;
+
+$font-light: 300;
+$font-regular: 400;
+$font-bold: 600;
+
+@mixin lighten-gradient {
+  background: linear-gradient(
+    to bottom,
+    rgba($light-color, 0.4),
+    rgba($light-color, 0.2)
+  );
+}

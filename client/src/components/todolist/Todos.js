@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { TodosContext } from '../../contexts/TodosContext';
 import Todo from './Todo';
 import styles from '../../styles/Todos.module.css';
-import globalStyles from '../../styles/GlobalStyles.module.css';
+import LoadingSpinner from '../LoadingSpinner';
 
 const Todos = () => {
   const { isPending, todos, error } = useContext(TodosContext);
@@ -10,13 +10,7 @@ const Todos = () => {
   return (
     <div>
       <div className={styles.todos}>
-        {isPending && (
-          <div className={globalStyles.divprogress}>
-            <div />
-            <div />
-            <div />
-          </div>
-        )}
+        {isPending && <LoadingSpinner />}
         {error && <div>{error}</div>}
         {todos.length > 0
           ? todos.map(todo => (

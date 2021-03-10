@@ -26,5 +26,5 @@ build:
             dest: .
           - src: 'src/**/*.css'
             dest: .
-          - src: 'public/**/*'
+          - src: 'src/**/*.scss'
             dest: .

@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { TodosContext } from '../../contexts/TodosContext';
 import useRequest from '../../hooks/useRequest';
-import globalStyles from '../../styles/GlobalStyles.module.css';
+import LoadingSpinner from '../LoadingSpinner';
 
 const Todo = ({ styles, todo: task }) => {
   const { deleteFromTodolist, checkTodo } = useContext(TodosContext);
@@ -29,13 +29,7 @@ const Todo = ({ styles, todo: task }) => {
       >
         {task.title}
         <div className={styles.animbox}>
-          {(pendingCheck || pendingDelete) && (
-            <div className={globalStyles.divprogress}>
-              <div />
-              <div />
-              <div />
-            </div>
-          )}
+          {(pendingCheck || pendingDelete) && <LoadingSpinner />}
         </div>
       </div>
       <div className={styles.buttons}>

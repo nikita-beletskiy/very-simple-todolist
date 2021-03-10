@@ -1,14 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
-
-:root {
-  --primary-color: #047aed;
-  --primary-transparent: #047aeded;
-  --secondary-color: #1c3fa8;
-  --dark-color: #002240;
-  --light-color: #f4f4f4;
-  --success-color: #5cb85c;
-  --error-color: #d9534f;
-}
+@import './config';
+@import './global';
+@import './header';
+@import './homepage';
 
 * {
   box-sizing: border-box;
@@ -17,43 +10,24 @@
 }
 
 body {
-  background-color: #e4e4e4;
+  background-color: $light-color;
   font-family: 'Lato', sans-serif;
-  color: var(--dark-color);
+  color: $dark-color;
   user-select: none;
   outline: none;
 }
 
-h1,
-h2 {
-  font-weight: 300;
-  line-height: 1.2;
-  margin: 10px 0;
-}
-
-p {
-  margin: 10px 0;
+.container {
+  max-width: 90%;
+  margin: 0 auto;
 }
 
 a {
-  color: #fff;
+  color: $light-color;
   text-decoration: none;
 }
 
 /* ------------------- Utilities ------------------- */
-
-/* BASE LAYOUT */
-.container {
-  max-width: 90%;
-  margin: 0 auto;
-  overflow: auto;
-}
-.flex {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 100%;
-}
 
 /* MARGINS */
 .my-1 {
@@ -156,23 +130,23 @@ a {
 /* BACKGROUNDS & COLORED BUTTONS */
 .bg-primary,
 .btn-primary {
-  background-color: var(--primary-color);
-  color: #fff;
+  background-color: $primary-color;
+  color: $light-color;
 }
 .bg-secondary,
 .btn-secondary {
-  background-color: var(--secondary-color);
-  color: #fff;
+  background-color: $secondary-color;
+  color: $light-color;
 }
 .bg-dark,
 .btn-dark {
-  background-color: var(--dark-color);
-  color: #fff;
+  background-color: $dark-color;
+  color: $light-color;
 }
 .bg-light,
 .btn-light {
-  background-color: var(--light-color);
-  color: #333;
+  background-color: $light-color;
+  color: $dark-color;
 }
 
 .bg-primary a,
@@ -181,26 +155,23 @@ a {
 .btn-secondary a,
 .bg-dark a,
 .btn-dark a {
-  color: #fff;
+  color: $light-color;
 }
 
 /* TEXT */
 .text-primary {
-  color: var(--primary-color);
+  color: $primary-color;
 }
 .text-secondary {
-  color: var(--secondary-color);
+  color: $secondary-color;
 }
 .text-dark {
-  color: var(--dark-color);
+  color: $dark-color;
 }
 .text-light {
-  color: var(--light-color);
+  color: $light-color;
 }
 
-.lead {
-  font-size: 20px;
-}
 .xs {
   font-size: 1rem;
 }
