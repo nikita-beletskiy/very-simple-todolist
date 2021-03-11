@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { HiMenuAlt4 } from 'react-icons/hi';
 import { IoClose } from 'react-icons/io5';
+import { ErrorsContext } from '../../contexts/ErrorsContext';
 
 const Menu = ({ links }) => {
   const [showMenu, setShowMenu] = useState(false);
+  const { updateErrors } = useContext(ErrorsContext);
 
   return (
     <>
@@ -14,7 +16,14 @@ const Menu = ({ links }) => {
       <div className={`menu ${showMenu && 'open'}`}>
         <IoClose size='2.5rem' onClick={() => setShowMenu(!showMenu)} />
         {links.map(({ label, href }) => (
-          <Link key={href} to={href} onClick={() => setShowMenu(!showMenu)}>
+          <Link
+            key={href}
+            to={href}
+            onClick={() => {
+              updateErrors(null);
+              setShowMenu(!showMenu);
+            }}
+          >
             {label}
           </Link>
         ))}

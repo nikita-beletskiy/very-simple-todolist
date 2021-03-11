@@ -7,33 +7,36 @@ import Signin from './components/login/Signin';
 import UserContextProvider from './contexts/UserContext';
 import Signout from './components/login/Signout';
 import Main from './components/todolist/Main';
+import ErrorsContextProvider from './contexts/ErrorsContext';
 
 const App = () => (
-  <BreakpointProvider>
-    <Router>
-      <UserContextProvider>
-        <Header />
-        <Switch>
-          <Route exact path='/'>
-            <Homepage />
-          </Route>
-          <Route path='/my-list'>
-            {/* ADD REDIRECT! */}
-            <Main />
-          </Route>
-          <Route path='/signup'>
-            <Signup />
-          </Route>
-          <Route path='/signin'>
-            <Signin />
-          </Route>
-          <Route path='/signout'>
-            <Signout />
-          </Route>
-        </Switch>
-      </UserContextProvider>
-    </Router>
-  </BreakpointProvider>
+  <ErrorsContextProvider>
+    <BreakpointProvider>
+      <Router>
+        <UserContextProvider>
+          <Header />
+          <Switch>
+            <Route exact path='/'>
+              <Homepage />
+            </Route>
+            <Route path='/my-list'>
+              {/* ADD REDIRECT! */}
+              <Main />
+            </Route>
+            <Route path='/signup'>
+              <Signup />
+            </Route>
+            <Route path='/signin'>
+              <Signin />
+            </Route>
+            <Route path='/signout'>
+              <Signout />
+            </Route>
+          </Switch>
+        </UserContextProvider>
+      </Router>
+    </BreakpointProvider>
+  </ErrorsContextProvider>
 );
 
 export default App;

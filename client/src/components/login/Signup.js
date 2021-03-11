@@ -1,16 +1,18 @@
 import { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
+import { ErrorsContext } from '../../contexts/ErrorsContext';
 import { UserContext } from '../../contexts/UserContext';
 import useRequest from '../../hooks/useRequest';
 import '../../styles/UserForm.css';
 
 const Signup = () => {
   const { updateCurrentUser } = useContext(UserContext);
+  const { errors } = useContext(ErrorsContext);
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const history = useHistory();
 
-  const { request: signup, isPending, error } = useRequest({
+  const { request: signup, isPending } = useRequest({
     url: '/api/users/signup',
     method: 'post',
     body: { email, password },
@@ -25,23 +27,9 @@ const Signup = () => {
     signup();
   };
 
-  const parsedErrors = error
-    ? {
-        emailError: error.find(err => err.field === 'email') && (
-          <div className='error' key={error.message}>
-            {error.find(err => err.field === 'email').message}
-          </div>
-        ),
-        passwordError: error.find(err => err.field === 'password') && (
-          <div className='error' key={error.message}>
-            {error.find(err => err.field === 'password').message}
-          </div>
-        )
-      }
-    : { emailError: null, passwordError: null };
-
   return (
     <div className='user-form'>
+      {errors}
       <h2>Sign Up</h2>
       <form onSubmit={handleSubmit}>
         <div className='input-group'>
@@ -52,7 +40,6 @@ const Signup = () => {
             required
             onChange={e => setEmail(e.target.value)}
           />
-          {parsedErrors.emailError}
         </div>
         <div className='input-group'>
           <label htmlFor='password'>Password:</label>
@@ -62,7 +49,6 @@ const Signup = () => {
             required
             onChange={e => setPassword(e.target.value)}
           />
-          {parsedErrors.passwordError}
         </div>
         <button type='submit' disabled={isPending}>
           Sign Up

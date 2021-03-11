@@ -1,21 +1,22 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { ErrorsContext } from '../contexts/ErrorsContext';
 
 const useRequest = ({
   url,
   method = 'get',
   body = null,
   withEffect = false,
-  onSuccess = null,
-  onFailure = null
+  onSuccess = null
 }) => {
   const [isPending, setIsPending] = useState(false);
-  const [error, setError] = useState(null);
+  const { updateErrors } = useContext(ErrorsContext);
 
   const request = async () => {
     try {
       setIsPending(true);
-      setError(null);
+      updateErrors(null);
+
       const response = await axios[method](url, body && { ...body });
       setIsPending(false);
 
@@ -23,8 +24,9 @@ const useRequest = ({
     } catch (err) {
       setIsPending(false);
 
-      err.response ? setError(err.response.data.errors) : console.log(err);
-      if (onFailure) onFailure(error.response.data.errors);
+      err.response.data.errors
+        ? updateErrors(err.response.data.errors)
+        : updateErrors([{ message: 'Something went wrong' }]);
     }
   };
 
@@ -32,7 +34,7 @@ const useRequest = ({
     if (withEffect) request();
   }, []);
 
-  return { request, isPending, error };
+  return { request, isPending };
 };
 
 export default useRequest;

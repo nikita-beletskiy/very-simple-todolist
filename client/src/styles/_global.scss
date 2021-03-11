@@ -1,3 +1,4 @@
+// LOADING SPINNER
 .loading {
   display: flex;
   margin: 0.5em;
@@ -13,5 +14,38 @@
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+// ERROR CARD
+.error {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 70px;
+  right: 0;
+  width: 40%;
+  max-width: 300px;
+  margin: 0.5rem;
+
+  p {
+    width: 100%;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: 10px;
+    background-color: rgba($error-color, 0.9);
+    color: $light-color;
+    text-align: center;
+    animation: showError 1s ease;
+  }
+}
+@keyframes showError {
+  0% {
+    opacity: 0;
+    transform: rotateX(-45deg);
+  }
+  100% {
+    opacity: 1;
+    transform: rotateX(0);
   }
 }

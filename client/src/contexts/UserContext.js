@@ -5,21 +5,17 @@ export const UserContext = createContext();
 
 const UserContextProvider = props => {
   const [currentUser, setCurrentUser] = useState(null);
-  const [error, setError] = useState(null);
 
   const { isPending } = useRequest({
     url: '/api/users/currentuser',
     withEffect: true,
-    onSuccess: data => setCurrentUser(data.currentUser),
-    onFailure: err => setError(err)
+    onSuccess: data => setCurrentUser(data.currentUser)
   });
 
   const updateCurrentUser = newUser => setCurrentUser(newUser);
 
   return (
-    <UserContext.Provider
-      value={{ isPending, currentUser, error, updateCurrentUser }}
-    >
+    <UserContext.Provider value={{ isPending, currentUser, updateCurrentUser }}>
       {props.children}
     </UserContext.Provider>
   );

@@ -1,5 +1,6 @@
 import { useContext, Suspense, lazy } from 'react';
 import Breakpoint from 'react-socks';
+import { ErrorsContext } from '../../contexts/ErrorsContext';
 import { UserContext } from '../../contexts/UserContext';
 import LoadingSpinner from '../LoadingSpinner';
 
@@ -8,6 +9,7 @@ const DesktopNav = lazy(() => import('./DesktopNav'));
 
 const Header = () => {
   const { currentUser, isPending } = useContext(UserContext);
+  const { errors } = useContext(ErrorsContext);
 
   const links = [
     { label: 'Home', href: '/' },
@@ -19,6 +21,7 @@ const Header = () => {
 
   return (
     <div className='header'>
+      {errors}
       <div className='container'>
         <h1>Todolist</h1>
 
