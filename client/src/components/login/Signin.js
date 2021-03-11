@@ -1,12 +1,10 @@
 import { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
-import { ErrorsContext } from '../../contexts/ErrorsContext';
 import { UserContext } from '../../contexts/UserContext';
 import useRequest from '../../hooks/useRequest';
 
 const Signin = () => {
   const { updateCurrentUser } = useContext(UserContext);
-  const { errors } = useContext(ErrorsContext);
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const history = useHistory();
@@ -29,7 +27,6 @@ const Signin = () => {
   return (
     <div className='login-wrapper'>
       <div className='user-form'>
-        {errors}
         <h2>Sign In</h2>
         <form onSubmit={handleSubmit}>
           <div className='user-form__input-group'>
