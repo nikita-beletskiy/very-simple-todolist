@@ -24,7 +24,7 @@ const useRequest = ({
     } catch (err) {
       setIsPending(false);
 
-      err.response.data.errors
+      err.response?.data.errors
         ? updateErrors(err.response.data.errors)
         : updateErrors([{ message: 'Something went wrong' }]);
     }

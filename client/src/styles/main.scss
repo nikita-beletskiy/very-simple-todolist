@@ -3,6 +3,7 @@
 @import './header';
 @import './homepage';
 @import './user-form';
+@import './todolist';
 
 * {
   box-sizing: border-box;
@@ -26,6 +27,10 @@ body {
 a {
   color: $light-color;
   text-decoration: none;
+}
+
+input {
+  background-color: $light-color;
 }
 
 /* ------------------- Utilities ------------------- */

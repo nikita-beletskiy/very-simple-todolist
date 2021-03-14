@@ -19,3 +19,24 @@ $font-bold: 600;
     rgba($light-color, 0.2)
   );
 }
+
+@mixin transition-ease {
+  transition: all 0.5s ease;
+}
+
+@mixin card-style {
+  padding: 1rem;
+  border-radius: 1rem;
+  box-shadow: 5px 5px 5px -4px $dark-color;
+  animation: showCard 1s ease;
+}
+@keyframes showCard {
+  0% {
+    opacity: 0;
+    transform: rotateX(-45deg);
+  }
+  100% {
+    opacity: 1;
+    transform: rotateX(0);
+  }
+}

@@ -1,9 +1,13 @@
 import { useContext } from 'react';
+import {
+  RiCheckboxBlankCircleLine,
+  RiCheckboxBlankCircleFill,
+  RiCloseCircleFill
+} from 'react-icons/ri';
 import { TodosContext } from '../../contexts/TodosContext';
 import useRequest from '../../hooks/useRequest';
-import LoadingSpinner from '../LoadingSpinner';
 
-const Todo = ({ styles, todo: task }) => {
+const Todo = ({ todo: task }) => {
   const { deleteFromTodolist, checkTodo } = useContext(TodosContext);
 
   const { request: deleteTodo, isPending: pendingDelete } = useRequest({
@@ -19,26 +23,32 @@ const Todo = ({ styles, todo: task }) => {
   });
 
   return (
-    <div className={styles.todo}>
-      <div
-        className={`${styles.title} ${task.done && styles.done} ${
-          (pendingCheck || pendingDelete) && styles.progress
-        }`}
-        role='listitem'
-        onClick={() => check()}
-      >
+    <div
+      className={`todo ${(pendingCheck || pendingDelete) && 'progress'} ${
+        task.done && 'done'
+      }`}
+    >
+      <div className='title' role='listitem' onClick={() => check()}>
         {task.title}
-        <div className={styles.animbox}>
-          {(pendingCheck || pendingDelete) && <LoadingSpinner />}
-        </div>
       </div>
-      <div className={styles.buttons}>
+
+      <div className='buttons'>
         <button
+          className='check'
+          type='button'
+          onClick={() => check()}
+          disabled={pendingDelete}
+        >
+          <RiCheckboxBlankCircleFill size='100%' />
+          <RiCheckboxBlankCircleLine size='100%' />
+        </button>
+        <button
+          className='trash'
           type='button'
           onClick={() => deleteTodo()}
           disabled={pendingDelete}
         >
-          del
+          <RiCloseCircleFill size='100%' />
         </button>
       </div>
     </div>

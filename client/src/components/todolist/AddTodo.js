@@ -1,8 +1,9 @@
 import { useContext, useState } from 'react';
+import { RiAddCircleLine } from 'react-icons/ri';
 import { TodosContext } from '../../contexts/TodosContext';
 import useRequest from '../../hooks/useRequest';
 
-const AddTodo = ({ styles }) => {
+const AddTodo = () => {
   const [todo, setTodo] = useState('');
   const { addNewTodo } = useContext(TodosContext);
 
@@ -23,7 +24,7 @@ const AddTodo = ({ styles }) => {
   };
 
   return (
-    <div className={styles.form}>
+    <div className='form-wrapper'>
       <form onSubmit={handleSubmit}>
         <input
           type='text'
@@ -32,7 +33,7 @@ const AddTodo = ({ styles }) => {
           onChange={e => setTodo(e.target.value)}
         />
         <button type='submit' disabled={isPending}>
-          Add
+          <RiAddCircleLine size='100%' />
         </button>
       </form>
     </div>

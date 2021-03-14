@@ -5,13 +5,11 @@ export const TodosContext = createContext();
 
 const TodosContextProvider = props => {
   const [todos, setTodos] = useState([]);
-  const [error, setError] = useState(null);
 
   const { isPending } = useRequest({
     url: '/api/todos',
     withEffect: true,
-    onSuccess: data => setTodos(data),
-    onFailure: err => setError(err)
+    onSuccess: data => setTodos(data)
   });
 
   const addNewTodo = todo => setTodos([...todos, todo]);
@@ -31,7 +29,6 @@ const TodosContextProvider = props => {
       value={{
         isPending,
         todos,
-        error,
         addNewTodo,
         deleteFromTodolist,
         checkTodo
