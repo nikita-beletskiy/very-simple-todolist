@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-srv
+  annotations:
+    nginx.ingress.kubernetes.io/use-regex: 'true'
+spec:
+  rules:
+    - host: verysimpletodolist-nikita-beletskiy.cloud.okteto.net
+      http:
+        paths:
+          - path: /api/users/?(.*)
+            backend:
+              serviceName: todo-server-srv
+              servicePort: 3000
+          - path: /api/todos/?(.*)
+            backend:
+              serviceName: todo-server-srv
+              servicePort: 3000
+          - path: /?(.*)
+            backend:
+              serviceName: todo-client-srv
+              servicePort: 3000

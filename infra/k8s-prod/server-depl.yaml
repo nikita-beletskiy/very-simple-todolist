@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-server-depl
+  annotations:
+    dev.okteto.com/auto-ingress: 'true'
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todo-server
+  template:
+    metadata:
+      labels:
+        app: todo-server
+    spec:
+      containers:
+        - name: todo-server
+          image: registry.cloud.okteto.net/nikita-beletskiy/server
+          env:
+            - name: MONGO_URI
+              value: 'mongodb://mongodb-srv:27017/verysimpletodolist'
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_KEY
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: todo-server-srv
+spec:
+  selector:
+    app: todo-server
+  ports:
+    - name: todo-server
+      protocol: TCP
+      port: 3000
+      targetPort: 3000

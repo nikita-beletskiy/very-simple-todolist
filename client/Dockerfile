@@ -1,9 +1,12 @@
-FROM node:14-alpine
+FROM node:14-alpine as build
 
 WORKDIR /app
+
 COPY package.json .
 RUN npm install --only-prod
-RUN npm install --save-dev sass
 COPY . .
 
-CMD [ "npm", "start" ]
+RUN npm run build
+
+FROM nginx:alpine
+COPY --from=build /app/build /usr/share/nginx/html

@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-client-depl
+  annotations:
+    dev.okteto.com/auto-ingress: 'true'
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todo-client
+  template:
+    metadata:
+      labels:
+        app: todo-client
+    spec:
+      containers:
+        - name: todo-client
+          image: registry.cloud.okteto.net/nikita-beletskiy/client
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: todo-client-srv
+spec:
+  selector:
+    app: todo-client
+  ports:
+    - name: todo-client
+      protocol: TCP
+      port: 3000
+      targetPort: 80
