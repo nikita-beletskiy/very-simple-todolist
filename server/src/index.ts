@@ -17,7 +17,7 @@ const app = express();
 // Traffic to app is beeing proxied by ingress nginx, so as we require in cookieSession that cookies will only be used over https, we set express to trust traffic coming from that proxy
 app.set('trust proxy', true);
 // Encryption for cookie is disabled because it is going to store a JWT, and it's already encrypted
-app.use(cookieSession({ signed: false, secure: true }));
+app.use(cookieSession({ signed: false, secure: false })); // Send cookie over HTTP for testing in production
 app.use(express.json());
 app.use(getCurrentUser);
 
