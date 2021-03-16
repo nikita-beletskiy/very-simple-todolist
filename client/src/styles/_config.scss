@@ -8,9 +8,34 @@ $success-color: #5cb85c;
 $error-color: #d9534f;
 $button-green: #0faf51;
 
-$font-light: 300;
-$font-regular: 400;
-$font-bold: 600;
+// LAYOUT
+@mixin flex {
+  display: flex;
+}
+@mixin flex-justify-center {
+  display: flex;
+  justify-content: center;
+}
+@mixin flex-align-center {
+  display: flex;
+  align-items: center;
+}
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+//-------------------------------
+
+// BACKGROUND COLORS
+@mixin primary-background {
+  background-color: $primary-color;
+}
+@mixin light-background {
+  background-color: $light-color;
+}
+@mixin dark-background {
+  background-color: $dark-color;
+}
 
 @mixin lighten-gradient {
   background: linear-gradient(
@@ -19,18 +44,105 @@ $font-bold: 600;
     rgba($light-color, 0.2)
   );
 }
+//-------------------------------
+
+// FONT WEIGHTS
+$weights: (
+  light: 300,
+  regular: 400,
+  bold: 600
+);
+@function getFontWeight($weight-name) {
+  @return map-get($weights, $weight-name);
+}
+@mixin font-weight($name) {
+  font-weight: getFontWeight($name);
+}
+
+//-------------------------------
+
+// TEXT COLORS
+@mixin light-text {
+  color: $light-color;
+}
+@mixin dark-text {
+  color: $dark-color;
+}
+//-------------------------------
+
+// MARGINS
+$margins: (
+  m-1: 1rem,
+  m-2: 1.5rem,
+  m-3: 2rem,
+  m-4: 3rem,
+  m-5: 4rem,
+  mx-1: 0 1rem,
+  mx-2: 0 1.5rem,
+  mx-3: 0 2rem,
+  mx-4: 0 3rem,
+  mx-5: 0 4rem,
+  my-1: 1rem 0,
+  my-2: 1.5rem 0,
+  my-3: 2rem 0,
+  my-4: 3rem 0,
+  my-5: 4rem 0
+);
+@function getMargin($margin-name) {
+  @return map-get($margins, $margin-name);
+}
+@mixin margin($name) {
+  margin: getMargin($name);
+}
+//-------------------------------
+
+// PADDINGS
+$paddings: (
+  p-1: 1rem,
+  p-2: 1.5rem,
+  p-3: 2rem,
+  p-4: 3rem,
+  p-5: 4rem,
+  px-1: 0 1rem,
+  px-2: 0 1.5rem,
+  px-3: 0 2rem,
+  px-4: 0 3rem,
+  px-5: 0 4rem,
+  py-1: 1rem 0,
+  py-2: 1.5rem 0,
+  py-3: 2rem 0,
+  py-4: 3rem 0,
+  py-5: 4rem 0
+);
+@function getPadding($padding-name) {
+  @return map-get($paddings, $padding-name);
+}
+@mixin padding($name) {
+  padding: getPadding($name);
+}
+//-------------------------------
+
+// OTHER
+@mixin text-center {
+  text-align: center;
+}
 
 @mixin transition-ease {
   transition: all 0.5s ease;
 }
 
-@mixin card-style {
+@mixin input-border {
+  border: none;
+  border-radius: 0.5rem;
+}
+
+@mixin tile-style($animation) {
   padding: 1rem;
   border-radius: 1rem;
   box-shadow: 5px 5px 5px -4px $dark-color;
-  animation: showCard 1s ease;
+  animation: $animation 1s ease;
 }
-@keyframes showCard {
+@keyframes showTile {
   0% {
     opacity: 0;
     transform: rotateX(-45deg);
@@ -38,5 +150,17 @@ $font-bold: 600;
   100% {
     opacity: 1;
     transform: rotateX(0);
+  }
+}
+@keyframes showCard {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  50% {
+    transform: translateY(0);
+  }
+  70% {
+    opacity: 1;
   }
 }

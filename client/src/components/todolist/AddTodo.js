@@ -28,6 +28,7 @@ const AddTodo = () => {
       <form onSubmit={handleSubmit}>
         <input
           type='text'
+          placeholder='I need to...'
           required
           value={todo}
           onChange={e => setTodo(e.target.value)}

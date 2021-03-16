@@ -19,27 +19,27 @@ const Homepage = () => (
 
     <section className='stats'>
       <div className='container'>
-        <h3 className='m'>
+        <h3>
           Introducing the world's best platform for managing your personal
           doings.
         </h3>
         <br />
-        <h3 className='s'>Simple. Neat. Reliable.</h3>
+        <h3>Simple. Neat. Reliable.</h3>
         <div className='stats__flex'>
           <div>
             <RiFileList2Line size='6rem' />
-            <p className='l'>2 343 265</p>
-            <p className='m text-secondary'>Todolists</p>
+            <p>2 343 265</p>
+            <p>Todolists</p>
           </div>
           <div>
             <BsFileEarmarkCheck size='6rem' />
-            <p className='l'>10 349 405</p>
-            <p className='m text-secondary'>Done</p>
+            <p>10 349 405</p>
+            <p>Done</p>
           </div>
           <div>
             <BiHappyBeaming size='6rem' />
-            <p className='l'>2 574 456</p>
-            <p className='m text-secondary'>Happy Users</p>
+            <p>2 574 456</p>
+            <p>Happy Users</p>
           </div>
         </div>
       </div>

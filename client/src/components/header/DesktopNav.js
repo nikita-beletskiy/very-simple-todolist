@@ -6,12 +6,7 @@ const Menu = ({ links }) => {
   const { updateErrors } = useContext(ErrorsContext);
 
   return links.map(({ label, href }) => (
-    <Link
-      className='mx-1'
-      key={href}
-      to={href}
-      onClick={() => updateErrors(null)}
-    >
+    <Link key={href} to={href} onClick={() => updateErrors(null)}>
       {label}
     </Link>
   ));

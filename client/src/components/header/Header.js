@@ -1,4 +1,6 @@
+import { Link } from 'react-router-dom';
 import { useContext, Suspense, lazy } from 'react';
+import { GiCheckMark } from 'react-icons/gi';
 import Breakpoint from 'react-socks';
 import { ErrorsContext } from '../../contexts/ErrorsContext';
 import { UserContext } from '../../contexts/UserContext';
@@ -23,7 +25,12 @@ const Header = () => {
     <div className='header'>
       {errors}
       <div className='container'>
-        <h1>Todolist</h1>
+        <Link to='/'>
+          <div className='logo'>
+            <GiCheckMark />
+            <h1>|Todolist</h1>
+          </div>
+        </Link>
 
         <Suspense fallback={<LoadingSpinner />}>
           <Breakpoint className='navbar' customQuery='(max-width: 670px)'>

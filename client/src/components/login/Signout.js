@@ -17,7 +17,7 @@ const Signout = () => {
     }
   });
 
-  return <div>Signing you out...</div>;
+  return <div className='signout'>Signing you out...</div>;
 };
 
 export default Signout;

@@ -35,6 +35,6 @@
     background-color: rgba($error-color, 0.9);
     color: $light-color;
     text-align: center;
-    @include card-style;
+    @include tile-style(showTile);
   }
 }
