@@ -1,9 +1,12 @@
 .main-wrapper {
   @include flex-column;
   justify-content: space-between;
-  height: 90vh;
-  max-height: calc(100vh - 60px); // Header min-height is 48px
   background-color: lighten($secondary-color, 10%);
+  // Optimizing todolist view for mobile devices
+  // Fallback for browsers that do not support Custom Properties
+  height: calc(100vh - 70px); // Header height is 70px
+  // For modern browsers
+  height: calc(var(--vh, 1vh) * 100 - 70px); // Header min-height is 70px
 
   .todos-wrapper {
     width: 100%;

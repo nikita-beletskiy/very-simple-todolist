@@ -30,6 +30,7 @@ const AddTodo = () => {
           type='text'
           placeholder='I need to...'
           required
+          autoComplete='off'
           value={todo}
           onChange={e => setTodo(e.target.value)}
         />
