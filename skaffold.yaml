@@ -3,7 +3,6 @@ kind: Config
 deploy:
   kubectl:
     manifests:
-      - ./infra/k8s/*
       - ./infra/k8s-dev/*
 build:
   local:
@@ -15,7 +14,7 @@ build:
         dockerfile: Dockerfile.dev
       sync:
         manual:
-          - src: 'src/**/*.ts'
+          - src: 'src/**/*'
             dest: .
     - image: todolistapp/todo-client
       context: client
@@ -23,9 +22,5 @@ build:
         dockerfile: Dockerfile.dev
       sync:
         manual:
-          - src: 'src/**/*.js'
-            dest: .
-          - src: 'src/**/*.css'
-            dest: .
-          - src: 'src/**/*.scss'
+          - src: 'src/**/*'
             dest: .

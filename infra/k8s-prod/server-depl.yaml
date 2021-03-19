@@ -18,13 +18,16 @@ spec:
         - name: todo-server
           image: registry.cloud.okteto.net/nikita-beletskiy/server
           env:
-            - name: MONGO_URI
-              value: 'mongodb://mongodb-srv:27017/verysimpletodolist'
             - name: JWT_KEY
               valueFrom:
                 secretKeyRef:
                   name: jwt-secret
                   key: JWT_KEY
+            - name: MONGO_URI
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-secret
+                  key: MONGO_URI
 ---
 apiVersion: v1
 kind: Service
