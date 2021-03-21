@@ -11,7 +11,7 @@ const DesktopNav = lazy(() => import('./DesktopNav'));
 
 const Header = () => {
   const { currentUser, isPending } = useContext(UserContext);
-  const { errors } = useContext(ErrorsContext);
+  const { errors, updateErrors } = useContext(ErrorsContext);
 
   const links = [
     { label: 'Home', href: '/' },
@@ -25,7 +25,7 @@ const Header = () => {
     <div className='header'>
       {errors}
       <div className='container'>
-        <Link to='/'>
+        <Link to='/' onClick={() => updateErrors(null)}>
           <div className='logo'>
             <GiCheckMark />
             <h1>|Todolist</h1>

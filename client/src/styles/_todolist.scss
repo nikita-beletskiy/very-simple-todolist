@@ -12,13 +12,18 @@
     width: 100%;
     max-width: 900px;
     margin: 0 auto;
-    padding-bottom: 1rem;
     overflow-y: scroll;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      width: 0;
+    }
   }
 
   .todos {
     @include flex-column;
     @include light-text;
+    padding-bottom: 1rem;
     font-size: 1.5rem;
 
     .loading {
@@ -58,10 +63,11 @@
 
       .title {
         @include transition-ease;
+        @include padding(py-2);
         max-width: 600px;
         line-height: 2.5rem;
-        padding: 0.5rem 0;
         flex-grow: 2;
+        cursor: pointer;
       }
 
       .buttons {
@@ -74,6 +80,7 @@
           margin-left: 0.5rem;
           border: none;
           background-color: transparent;
+          cursor: pointer;
 
           &.check {
             svg:first-of-type {

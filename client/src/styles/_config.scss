@@ -137,7 +137,6 @@ $paddings: (
 }
 
 @mixin tile-style($animation) {
-  padding: 1rem;
   border-radius: 1rem;
   box-shadow: 5px 5px 5px -4px $dark-color;
   animation: $animation 1s ease;

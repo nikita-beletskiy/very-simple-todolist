@@ -1,19 +1,31 @@
+import { Suspense, lazy } from 'react';
+import Breakpoint from 'react-socks';
 import { RiFileList2Line } from 'react-icons/ri';
 import { BsFileEarmarkCheck } from 'react-icons/bs';
 import { BiHappyBeaming } from 'react-icons/bi';
-import video from '../../video/video.mp4';
+import LoadingSpinner from '../LoadingSpinner';
+
+const MobileVideo = lazy(() => import('./MobileVideo'));
+const DesktopVideo = lazy(() => import('./DesktopVideo'));
 
 const Homepage = () => (
   <>
-    <section className='welcome text-center'>
+    <section className='welcome'>
       <div className='welcome__wrapper'>
         <div className='welcome__text container'>
           <h1>Welcome to our Todolist!</h1>
           <p>We are so happy you decided to try our service out!</p>
         </div>
-        <video autoPlay loop muted>
-          <source src={video} type='video/mp4' />
-        </video>
+
+        <Suspense fallback={<LoadingSpinner size='2rem' />}>
+          <Breakpoint className='navbar' customQuery='(max-width: 895px)'>
+            <MobileVideo />
+          </Breakpoint>
+
+          <Breakpoint className='navbar' customQuery='(min-width: 895px)'>
+            <DesktopVideo />
+          </Breakpoint>
+        </Suspense>
       </div>
     </section>
 

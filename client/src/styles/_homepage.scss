@@ -10,12 +10,26 @@
     position: relative;
     overflow: hidden;
     height: 100%;
+    max-height: 500px;
+
+    .loading {
+      position: absolute;
+      top: 45%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      margin: 0;
+    }
 
     video {
       position: absolute;
       top: 50%;
-      transform: translateX(-52%) translateY(-50%) scale(0.5);
       z-index: -1;
+    }
+    .mobile-video {
+      transform: translateX(-50%) translateY(-50%) scale(0.7);
+    }
+    .desktop-video {
+      transform: translateX(-50%) translateY(-50%) scale(0.5);
     }
   }
 
@@ -115,5 +129,36 @@ footer {
     div {
       @include margin(m-3);
     }
+  }
+}
+
+@media (min-width: 970px) {
+  .welcome__wrapper .desktop-video {
+    transform: translateX(-50%) translateY(-50%) scale(0.6);
+  }
+}
+@media (min-width: 1160px) {
+  .welcome__wrapper .desktop-video {
+    transform: translateX(-50%) translateY(-50%) scale(0.7);
+  }
+}
+@media (min-width: 1340px) {
+  .welcome__wrapper .desktop-video {
+    transform: translateX(-50%) translateY(-50%) scale(0.8);
+  }
+}
+@media (min-width: 1530px) {
+  .welcome__wrapper .desktop-video {
+    transform: translateX(-50%) translateY(-50%) scale(0.9);
+  }
+}
+@media (min-width: 1720px) {
+  .welcome__wrapper .desktop-video {
+    transform: translateX(-50%) translateY(-50%);
+  }
+}
+@media (min-width: 1920px) {
+  .welcome__wrapper .desktop-video {
+    transform: translateX(-50%) translateY(-50%) scale(1.1);
   }
 }
