@@ -20,7 +20,6 @@ const App = () => (
               <Homepage />
             </Route>
             <Route path='/my-list'>
-              {/* ADD REDIRECT! */}
               <Main />
             </Route>
             <Route path='/signup'>

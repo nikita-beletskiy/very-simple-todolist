@@ -70,6 +70,8 @@
     "jsx-a11y/click-events-have-key-events": "off",
     "jsx-a11y/no-noninteractive-element-interactions": "off",
     "space-before-blocks": "off",
-    "brace-style": "off"
+    "brace-style": "off",
+    "object-property-newline": "off",
+    "array-bracket-spacing": "off"
   }
 }

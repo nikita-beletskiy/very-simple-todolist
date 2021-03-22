@@ -1,3 +1,6 @@
+import { useContext } from 'react';
+import { Redirect } from 'react-router-dom';
+import { ErrorsContext } from '../../contexts/ErrorsContext';
 import TodosContextProvider from '../../contexts/TodosContext';
 import AddTodo from './AddTodo';
 import Todos from './Todos';
@@ -15,15 +18,21 @@ window.addEventListener('resize', () => {
   document.documentElement.style.setProperty('--vh', `${vh}px`);
 });
 
-const Main = () => (
-  <div className='main-wrapper'>
-    <TodosContextProvider>
-      <div className='todos-wrapper'>
-        <Todos />
-      </div>
-      <AddTodo />
-    </TodosContextProvider>
-  </div>
-);
+const Main = () => {
+  const { errors } = useContext(ErrorsContext);
+
+  return errors.messages.some(errMessage => errMessage === 'Not authorized') ? (
+    <Redirect to='/signin' />
+  ) : (
+    <div className='main-wrapper'>
+      <TodosContextProvider>
+        <div className='todos-wrapper'>
+          <Todos />
+        </div>
+        <AddTodo />
+      </TodosContextProvider>
+    </div>
+  );
+};
 
 export default Main;

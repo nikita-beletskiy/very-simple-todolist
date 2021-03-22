@@ -23,7 +23,7 @@ const Header = () => {
 
   return (
     <div className='header'>
-      {errors}
+      {errors.toRender}
       <div className='container'>
         <Link to='/' onClick={() => updateErrors(null)}>
           <div className='logo'>

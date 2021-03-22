@@ -8,18 +8,20 @@ import { TodosContext } from '../../contexts/TodosContext';
 import useRequest from '../../hooks/useRequest';
 
 const Todo = ({ todo: task }) => {
-  const { deleteFromTodolist, checkTodo } = useContext(TodosContext);
+  const { dispatch } = useContext(TodosContext);
 
   const { request: deleteTodo, isPending: pendingDelete } = useRequest({
     url: `/api/todos/${task.id}`,
     method: 'delete',
-    onSuccess: ({ deletedId }) => deleteFromTodolist(deletedId)
+    onSuccess: ({ deletedId }) =>
+      dispatch({ type: 'DELETE_TODO', id: deletedId })
   });
 
   const { request: check, isPending: pendingCheck } = useRequest({
     url: `/api/todos/${task.id}`,
     method: 'patch',
-    onSuccess: ({ checkedId }) => checkTodo(checkedId)
+    onSuccess: ({ checkedId }) =>
+      dispatch({ type: 'CHECK_TODO', id: checkedId })
   });
 
   return (

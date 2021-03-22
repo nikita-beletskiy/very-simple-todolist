@@ -5,14 +5,14 @@ import useRequest from '../../hooks/useRequest';
 
 const AddTodo = () => {
   const [todo, setTodo] = useState('');
-  const { addNewTodo } = useContext(TodosContext);
+  const { dispatch } = useContext(TodosContext);
 
   const { request: addTodo, isPending } = useRequest({
     url: '/api/todos',
     method: 'post',
     body: { title: todo },
     onSuccess: newTodo => {
-      addNewTodo(newTodo);
+      dispatch({ type: 'ADD_TODO', newTodo });
       setTodo('');
     }
   });
