@@ -8,6 +8,7 @@
 .user-form {
   @include flex-column;
   @include tile-style(showCard);
+  @include padding(p-1);
   align-items: center;
   width: 80%;
   max-width: 500px;
